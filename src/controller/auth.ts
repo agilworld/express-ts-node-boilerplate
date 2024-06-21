@@ -17,7 +17,6 @@ export const createUserByEmail = async (req:Request, res:Response, next:NextFunc
     const paramsBody = req.body 
     if( paramsBody?.email && paramsBody?.password ) {
       const result = await AuthService.createUser(paramsBody)
-      console.log("result error", result.error)
       if( result.error ) {
         res.status(httpStatus.UNPROCESSABLE_ENTITY).json({code:result.error.code, message:result.error.message})
       } else {

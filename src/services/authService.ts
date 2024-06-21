@@ -1,4 +1,5 @@
 import { SupabaseAuthentication, ISupabaseRepoAuth } from "./supabase/Authentication"
+import { LocalAuthentication, ILocalAuth } from "./local/Authentication"
 import { SupabaseAuthorization, ISupabaseMiddleware } from "./supabase/Middleware"
 import { IAuth, IAuthMiddleware, IObject } from "../interface/IAuth"
 
@@ -30,5 +31,9 @@ const supabaseAuthInstance = new AuthService(SupabaseAuthentication, SupabaseAut
 export const SupabaseInstanceAuth =  supabaseAuthInstance.auth as ISupabaseRepoAuth
 
 export const SupabaseInstanceMiddleware =  supabaseAuthInstance.middleware as ISupabaseMiddleware
+
+// Instance of local
+// const localAuthInstance = new AuthService(LocalAuthentication, SupabaseAuthorization)
+
 
 
