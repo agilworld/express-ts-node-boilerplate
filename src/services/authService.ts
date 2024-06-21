@@ -20,8 +20,8 @@ export class AuthService {
    * @param AuthMiddleware 
    */
   constructor(AuthProvider, AuthMiddleware) {
-    this.auth = AuthProvider
-    this.middleware = AuthMiddleware
+    this.auth = new AuthProvider()
+    this.middleware = new AuthMiddleware()
   }
 }
 

@@ -8,28 +8,29 @@ import { SupabaseInstanceAuth } from "../services/authService"
  */
 const AuthService = SupabaseInstanceAuth
 
-// /**
-//  * Update user
-//  * @public
-//  */
-// export const updateUser = async (req:Request, res:Response, next:NextFunction) => {
-//   try {
-//     const userId = req.userId as string 
-//     const paramsBody = req.body 
-//     if( paramsBody ) {
-//       const userRes = new UserRepository(userId)
-//       // call update
-//       await userRes.update(paramsBody)
-//       res.status(httpStatus.CREATED).json({message:"Success Update"})
-//     } else {
-//       res.status(httpStatus.NOT_FOUND).json({message:"Not Found"})
-//     }  
-//   } catch (error) {
-//     // next(User.checkDuplicateEmail(error));
-//     res.status(httpStatus.BAD_REQUEST).json({message:"Bad Request"})
-//   }
-// };
-
+/**
+ * Create user
+ * @public
+ */
+export const createUserByEmail = async (req:Request, res:Response, next:NextFunction) => {
+  try {
+    const paramsBody = req.body 
+    if( paramsBody?.email && paramsBody?.password ) {
+      const result = await AuthService.createUser(paramsBody)
+      console.log("result error", result.error)
+      if( result.error ) {
+        res.status(httpStatus.UNPROCESSABLE_ENTITY).json({code:result.error.code, message:result.error.message})
+      } else {
+        res.status(httpStatus.CREATED).json({message:"User Created"})
+      }
+    } else {
+      res.status(httpStatus.BAD_REQUEST).json({message:"Bad Request"})
+    }  
+  } catch (error) {
+    console.log("error", error)
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({message:"Bad Request"})
+  }
+};
 
 /**
  * Get user

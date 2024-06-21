@@ -10,9 +10,27 @@ export type IObject = {
 } | null
 
 export interface IAuth {
+  /**
+   * create/sign-up user
+   * @param opts Object
+   */
   createUser(opts: unknown):Promise<unknown>
+
+  /**
+   * Sign-in user with password & email
+   * @param opts 
+   */
   signInPassword(opts: unknown): Promise<unknown>
+
+  /**
+   * Sign-in user with provider Google, Github, Facebook
+   * @param opts 
+   */
   signInProvider(opts: unknown): Promise<unknown>
+
+  /**
+   * Sign out user method
+   */
   signOut():void
 }
 
