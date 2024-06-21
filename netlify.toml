@@ -1,0 +1,13 @@
+[functions]
+  external_node_modules = ["express"]
+  node_bundler = "esbuild"
+[dev]
+  command = "yarn start"
+  port = 8888
+  targetPort = 3000
+  publish = "dist"
+  autoLaunch = true
+[build]
+  port = 8888
+  publish = "dist"
+  autoLaunch = true
