@@ -26,10 +26,9 @@ export const createUserByEmail = async (req:Request, res:Response, next:NextFunc
       res.status(httpStatus.BAD_REQUEST).json({message:"Bad Request"})
     }  
   } catch (error) {
-    console.log("error", error)
     res.status(httpStatus.INTERNAL_SERVER_ERROR).json({message:"Bad Request"})
   }
-};
+}
 
 /**
  * Get user
@@ -39,10 +38,11 @@ export const getUser = async (req:Request, res:Response, next:NextFunction) => {
   try {
     const user = req.user
     return res.status(httpStatus.OK)
-      .json({data:user});
-  
+      .json(user);
+
   } catch (error) {
-    console.log("error")
+    res.status(httpStatus.UNAUTHORIZED)
+      .json(error);
   }
 };
 
@@ -60,12 +60,13 @@ export const loginUser = async (req:Request, res:Response, next:NextFunction) =>
       password
     })
 
-    if( resToken?.data ) {
-      res.status(httpStatus.OK)
-        .json(resToken.data)
-    } else {
+    if( resToken?.error ) {
+      console.log("error", resToken.error)
       res.status(httpStatus.UNAUTHORIZED)
-        .json(resToken.error);
+        .json(resToken.error)
+    } else {
+      res.status(httpStatus.OK)
+        .json(resToken.data);
     }
     
   } catch (error) {
@@ -98,5 +99,26 @@ export const loginUserProvider = async (req:Request, res:Response, next:NextFunc
   }
 };
 
+
+
+export const verifyByEmail = async (req:Request, res:Response, next:NextFunction) => {
+  try {
+    const token = req.query?.access_token as string
+    
+    const result = await AuthService.verifyByEmail(token)
+
+    if( result?.data ) {
+      res.status(httpStatus.OK)
+        .json(result.data);
+    } else {
+      res.status(httpStatus.UNAUTHORIZED)
+        .json(result.error)
+    }
+    
+  } catch (error) {
+    res.status(httpStatus.BAD_REQUEST)
+      .json({message:"Bad Request"})
+  }
+};
 
 

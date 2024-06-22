@@ -6,10 +6,11 @@ export interface ISupabaseRepoAuth extends IAuth {
   createUser(params:SignUpWithPasswordCredentials):Promise<AuthResponse>
   signInPassword(credentials:SignInWithPasswordCredentials):Promise<AuthTokenResponsePassword>
   signInProvider(credentials:SignInWithIdTokenCredentials):Promise<AuthTokenResponse>
+  verifyByEmail(token:string): Promise<AuthResponse> 
   signOut()
 }
 
-export class SupabaseAuthentication implements ISupabaseRepoAuth {  
+export class SupabaseAuthentication implements Partial<ISupabaseRepoAuth> {  
 
   async createUser(credentials:SignUpWithPasswordCredentials):Promise<AuthResponse> {
     const res = await supabase.auth.signUp(credentials)
@@ -23,6 +24,11 @@ export class SupabaseAuthentication implements ISupabaseRepoAuth {
 
   async signInProvider(credentials:SignInWithIdTokenCredentials):Promise<AuthTokenResponse> {
     const res = await supabase.auth.signInWithIdToken(credentials)
+    return res
+  }
+
+  async verifyByEmail(token: string): Promise<AuthResponse> {
+    const res = await supabase.auth.verifyOtp({ token_hash: token, type: 'email'})
     return res
   }
 

@@ -29,6 +29,26 @@ export interface IAuth {
   signInProvider(opts: unknown): Promise<unknown>
 
   /**
+   * Verify user by email, just pass token itself
+   * @param token String
+   */
+  verifyByEmail(token:string):Promise<unknown>
+
+  /**
+   * Verify user by token & email
+   * @param token String
+   * @param email String
+   */
+  verifyOTPByEmail(token:string, email:string): Promise<unknown>
+
+  /**
+   * Verify user by token & email
+   * @param token String
+   * @param phone String
+   */
+  verifyOTPByPhone(token:string, phone:string): Promise<unknown>
+
+  /**
    * Sign out user method
    */
   signOut():void

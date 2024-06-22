@@ -10,7 +10,7 @@ export interface ILocalAuth extends IAuth {
  /**
   * Local auth
   */
-export class LocalAuthentication implements ILocalAuth {  
+export class LocalAuthentication implements Partial<ILocalAuth> {  
 
   async createUser(credentials:IObject):Promise<any> {
     // create user logic
