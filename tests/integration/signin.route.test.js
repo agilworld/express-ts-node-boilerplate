@@ -1,7 +1,9 @@
-const vars = require("../../dist/config/vars")
 const request = require("supertest")
 const httpStatus = require("http-status")
 const app = require("../../dist/core/app")
+// import { request } from "supertest"
+// import httpStatus from "http-status"
+// import app from "../dist/core/app"
 
 describe('Test Sign-in routes', () => {
   describe('GET /v1/auth/login', () => {

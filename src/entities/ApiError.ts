@@ -1,28 +1,28 @@
 import httpStatus from "http-status";
-import APIError from "../libs/error-api";
-import { Response, Request, NextFunction } from "express";
+import APIError, { IApiError } from "../libs/error-api";
+import { Response, Request } from "express";
 
 /**
  * Error handler. Send stacktrace only during development
  * @public
  */
-export const handler = (err:any, req:Request, res:Response, next?:NextFunction) => {
+export const handler = (err:IApiError, req:Request, res:Response) => {
   const response = {
-    code: err.status,
-    message: err.message,
-    errors: err.errors,
+    code: err?.status,
+    message: err?.message,
+    errors: err?.errors,
     stack: err.stack,
-  };
+  } as IApiError;
 
   if (process.env.NODE_ENV !== 'development') {
     delete response.stack;
   }
 
-  res.status(err.status);
+  res.status(err.status as number);
   res.json(response);
 };
 
-export const notFound = (req:Request, res:Response, next:NextFunction) => {
+export const notFound = (req:Request, res:Response) => {
   const err = new APIError({
     message: 'Not found',
     status: httpStatus.NOT_FOUND,

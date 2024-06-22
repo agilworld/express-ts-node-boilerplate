@@ -1,6 +1,7 @@
 import httpStatus from "http-status"
-import { Request, Response, NextFunction } from "express"
+import { Request, Response } from "express"
 import { SupabaseInstanceAuth } from "../services/authService"
+import { IObject } from "../interface/IAuth"
 
 /**
  * @public
@@ -12,11 +13,15 @@ const AuthService = SupabaseInstanceAuth
  * Create user
  * @public
  */
-export const createUserByEmail = async (req:Request, res:Response, next:NextFunction) => {
+export const createUserByEmail = async (req:Request, res:Response) => {
   try {
-    const paramsBody = req.body 
+    const paramsBody = req.body as IObject
+
     if( paramsBody?.email && paramsBody?.password ) {
-      const result = await AuthService.createUser(paramsBody)
+      const result = await AuthService.createUser({
+        email:paramsBody?.email as string,
+        password:paramsBody?.password as string
+      })
       if( result.error ) {
         res.status(httpStatus.UNPROCESSABLE_ENTITY).json({code:result.error.code, message:result.error.message})
       } else {
@@ -34,9 +39,9 @@ export const createUserByEmail = async (req:Request, res:Response, next:NextFunc
  * Get user
  * @public
  */
-export const getUser = async (req:Request, res:Response, next:NextFunction) => {
+export const getUser = (req:Request, res:Response) => {
   try {
-    const user = req.user
+    const user = req.user as IObject
     return res.status(httpStatus.OK)
       .json(user);
 
@@ -50,10 +55,11 @@ export const getUser = async (req:Request, res:Response, next:NextFunction) => {
  * Login user
  * @public
  */
-export const loginUser = async (req:Request, res:Response, next:NextFunction) => {
+export const loginUser = async (req:Request, res:Response) => {
   try {
-    const email = req.body?.email 
-    const password = req.body?.password 
+    const data = req.body as IObject
+    const email = data?.email as string
+    const password = data?.password as string
 
     const resToken = await AuthService.signInPassword({
       email,
@@ -61,7 +67,6 @@ export const loginUser = async (req:Request, res:Response, next:NextFunction) =>
     })
 
     if( resToken?.error ) {
-      console.log("error", resToken.error)
       res.status(httpStatus.UNAUTHORIZED)
         .json(resToken.error)
     } else {
@@ -75,10 +80,11 @@ export const loginUser = async (req:Request, res:Response, next:NextFunction) =>
   }
 };
 
-export const loginUserProvider = async (req:Request, res:Response, next:NextFunction) => {
+export const loginUserProvider = async (req:Request, res:Response) => {
   try {
-    const provider = req.body?.provider 
-    const token = req.body?.token 
+    const data = req.body as IObject
+    const provider = data?.provider as string
+    const token = data?.token as string
     
     const resToken = await AuthService.signInProvider({
       provider,
@@ -101,7 +107,7 @@ export const loginUserProvider = async (req:Request, res:Response, next:NextFunc
 
 
 
-export const verifyByEmail = async (req:Request, res:Response, next:NextFunction) => {
+export const verifyByEmail = async (req:Request, res:Response) => {
   try {
     const token = req.query?.access_token as string
     

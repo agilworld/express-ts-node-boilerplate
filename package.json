@@ -5,6 +5,7 @@
   "author": "Dian Afrial Rahadi Ragil <agil.rahadi@gmail.com>",
   "main": "dist/src/index.js",
   "private": false,
+  "type": "module",
   "license": "MIT",
   "engines": {
     "node": ">=18",
@@ -16,10 +17,10 @@
     "start:prod": "cross-env NODE_ENV=production node dist/index.js",
     "build": "rm -rf dist && cross-env NODE_ENV=production npx tsc",
     "dev": "nodemon ./src/index.ts",
-    "lint": "eslint ./src/ --ignore-path .gitignore --ignore-pattern internals/scripts",
+    "lint": "eslint ./src/ --ignore-pattern .gitignore",
     "lint:fix": "yarn lint --fix",
     "lint:watch": "yarn lint --watch",
-    "test": "npx tsc && jest -i --colors --verbose --detectOpenHandles",
+    "test": "npx tsc && jest -i --colors --verbose --no-cache --detectOpenHandles",
     "test:watch": "jest -i --watchAll",
     "coverage": "jest -i --coverage",
     "coverage:coveralls": "jest -i --coverage --coverageReporters=text-lcov | coveralls",
@@ -67,6 +68,7 @@
     "@types/bcryptjs": "^2.4.6",
     "@types/compression": "^1.7.5",
     "@types/cors": "^2.8.17",
+    "@types/eslint__js": "^8.42.3",
     "@types/express": "^4.17.21",
     "@types/helmet": "^4.0.0",
     "@types/jest": "^29.5.12",
@@ -85,6 +87,7 @@
     "prettier": "^3.3.2",
     "supertest": "^7.0.0",
     "ts-jest": "^29.1.5",
-    "ts-node-dev": "^2.0.0"
+    "ts-node-dev": "^2.0.0",
+    "typescript-eslint": "^7.13.1"
   }
 }

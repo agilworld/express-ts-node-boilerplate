@@ -4,7 +4,8 @@
     "no-underscore-dangle": 0,
     "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
     "no-use-before-define": ["error", { "variables": false }],
-    "no-multi-str": 0
+    "no-multi-str": 0,
+    "@typescript-eslint/no-unsafe-assignment": 0
   },
   "env": {
     "node": true,
@@ -14,6 +15,10 @@
     "ecmaVersion": 2018
   },
   "extends": [
-    "airbnb-base"
-  ]
+    "airbnb-base",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked"
+  ],
+  "ignorePatterns": ["node_modules", "dist/*"]
 }

@@ -1,7 +1,7 @@
 import httpStatus from "http-status"
 import ExtendableError from "./error"
 
-type IApiError = {
+export type IApiError = {
   message:string
   errors?:any
   stack?:any

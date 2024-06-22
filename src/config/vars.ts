@@ -1,7 +1,6 @@
-import path from "path"
+import { config } from "dotenv-safe";
 
-// import .env variables
-require('dotenv-safe').config();
+config()
 
 type IProps = {
   env: string,
@@ -14,7 +13,7 @@ type IProps = {
 
 const port:number = process.env.PORT as never
 
-const config:IProps = {
+const vars:IProps = {
   env: process.env.NODE_ENV!,
   port: port,
   jwtSecret: process.env.JWT_SECRET!,
@@ -23,4 +22,4 @@ const config:IProps = {
   supabaseAnonKey: process.env.SUPABASE_ANON_KEY!
 }
 
-export default config
+export default vars

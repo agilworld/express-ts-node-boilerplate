@@ -1,11 +1,11 @@
 /**
  * @extends Error
  */
-type CError = {
+export type CError = {
   message:string
   errors:string | any
   status:number
-  stack:string
+  stack?:string
   isPublic:boolean
 }
 
