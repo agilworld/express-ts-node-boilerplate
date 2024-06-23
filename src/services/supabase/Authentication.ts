@@ -1,5 +1,5 @@
-import { AuthError, AuthResponse, AuthTokenResponse, AuthTokenResponsePassword, SignInWithIdTokenCredentials, SignInWithPasswordCredentials, SignUpWithPasswordCredentials } from "@supabase/supabase-js"
-import { IAuth, IObject } from "../../interface/IAuth"
+import { AuthResponse, AuthTokenResponse, AuthTokenResponsePassword, SignInWithIdTokenCredentials, SignInWithPasswordCredentials, SignUpWithPasswordCredentials } from "@supabase/supabase-js"
+import { IAuth } from "../../interface/IAuth"
 import { supabase } from "../../config/supabase"
 
 export interface ISupabaseRepoAuth extends IAuth {

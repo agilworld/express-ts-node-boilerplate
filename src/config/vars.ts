@@ -1,5 +1,6 @@
 import { config } from "dotenv-safe";
 
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 config()
 
 type IProps = {

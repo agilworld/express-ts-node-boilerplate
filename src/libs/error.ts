@@ -3,7 +3,7 @@
  */
 export type CError = {
   message:string
-  errors:string | any
+  errors:unknown
   status:number
   stack?:string
   isPublic:boolean
@@ -17,7 +17,6 @@ class ExtendableError extends Error {
     message,
     errors,
     status,
-    isPublic,
     stack,
   }:CError) {
     super(message);

@@ -1,10 +1,5 @@
 import APIError from "../libs/error-api"
 
-type ISignInWithPasswordOpts = {
-  email: string,
-  password: string
-}
-
 export type IObject = {
   [key: string]: any
 } | null

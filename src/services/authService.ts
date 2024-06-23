@@ -1,5 +1,5 @@
 import { SupabaseAuthentication, ISupabaseRepoAuth } from "./supabase/Authentication"
-import { LocalAuthentication, ILocalAuth } from "./local/Authentication"
+// import { LocalAuthentication, ILocalAuth } from "./local/Authentication"
 import { SupabaseAuthorization, ISupabaseMiddleware } from "./supabase/Middleware"
 import { IAuth, IAuthMiddleware, IObject } from "../interface/IAuth"
 
@@ -21,8 +21,12 @@ export class AuthService {
    * @param AuthMiddleware 
    */
   constructor(AuthProvider, AuthMiddleware) {
+    /* eslint-disable @typescript-eslint/no-unsafe-call */
+    /* eslint-disable @typescript-eslint/no-unsafe-assignment */
     this.auth = new AuthProvider()
-    this.middleware = new AuthMiddleware()
+    /* eslint-disable @typescript-eslint/no-unsafe-call */
+     /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+    this.middleware = new AuthMiddleware() 
   }
 }
 

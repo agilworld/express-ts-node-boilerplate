@@ -3,8 +3,8 @@ import ExtendableError from "./error"
 
 export type IApiError = {
   message:string
-  errors?:any
-  stack?:any
+  errors?:unknown
+  stack?:string
   status?:number
   isPublic?:boolean
 }
