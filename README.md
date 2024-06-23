@@ -1,12 +1,10 @@
-## Express TypeScript Boilerplate
-----------------------------------------
+# Express TypeScript Boilerplate
 
 Node Express.js backend boilerplate for API gateway using Express.js framework and TypeScript as typed language. The boilerplate is built and adopted repository pattern and support any service provider to be scalable and maintainable with small team, but I understand the boilerplate is very early, you can see authentication pattern with Supabase or Local DB.
 
 The codes is not ready to PRODUCTION, currently still using development.
 
-### Getting Started 
--------------------
+## Getting Started 
 
 please use `yarn` or `pnpm` for recommendation
 
@@ -17,8 +15,7 @@ I used to `yarn` as common package manager
 - yarn build
 
 
-### Structure
--------------------
+## Structure
 
 `config` : Config environment and config for provider
 
@@ -37,13 +34,12 @@ I used to `yarn` as common package manager
 `services` : collection of service provider 
 
 
-### Test 
--------------------
+## Test 
+
 the boilerplate is designed to easy to use end-to-end test, you can find out directory in `tests`
 
 
-### Contribute
--------------------
+## Contribute
 
 Please email to agil.rahadi@gmail.com or visit https://linkedin.com/in/dianafrial
 
