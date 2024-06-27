@@ -17,14 +17,14 @@ I used to `yarn` as common package manager
 
 ## Structure
 
-`config` : Config environment and config for provider
-`controller`: Controller for routes
-`core` : the main services app
-`entities` : classes of service entitites
-`interface` : Type interface of classes
-`middleware` : Middleware collection 
-`routes` : list of API endpoints 
-`services` : collection of service provider 
+- `config` : Config environment and config for provider
+- `controller`: Controller for routes
+- `core` : the main services app
+- `entities` : classes of service entitites
+- `interface` : Type interface of classes
+- `middleware` : Middleware collection 
+- `routes` : list of API endpoints 
+- `services` : collection of service provider 
 
 ## Integration Service Tools
 
