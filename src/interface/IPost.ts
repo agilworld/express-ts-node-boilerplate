@@ -1,7 +1,6 @@
 import APIError from "../libs/error-api"
 
 export interface IUserType {
-  userId:string
   name:string
   email:string
   phone:string
@@ -14,8 +13,8 @@ export interface IPostType {
   title: string
   slug: string
   content: string
-  author?: IUserType
-  authorId?: string
+  author: IUserType
+  authorId: string
 }
 
 export type WherePosts = Partial<Omit<IPostType, "author">>
@@ -47,7 +46,7 @@ export interface IPost {
    * create post
    * @param opts Object
    */
-  createPost(body: unknown, user:unknown):Promise<unknown>
+  createPost(body: unknown):Promise<unknown>
 
   /**
    * Update a post

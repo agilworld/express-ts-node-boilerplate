@@ -51,23 +51,47 @@ export const getPosts = (req:Request, res:Response) => {
  * Get all posts
  * @public
  */
+export const getUserPosts = (req:Request, res:Response) => {
+  try {
+    const body = req.body as TCollectionBodyReq
+    const paramsUser = req.user as IObject
+    const data = PostService.getUserPostsPagination(paramsUser?.id, body?.offset, body?.limit)
+    
+    return res.status(httpStatus.OK)
+      .json(data);
+
+  } catch (error) {
+    res.status(httpStatus.INTERNAL_SERVER_ERROR)
+      .json(error);
+  }
+}
+
+/**
+ * Get all posts
+ * @public
+ */
 export const createPost = (req:Request, res:Response) => {
   try {
     const body = req.body as IPostType
     const paramsUser = req.user as IObject
-    const dataUser = paramsUser?.user
-    console.log("datauser", dataUser)
+    // console.log("datauser", paramsUser)
     const user = {
-      id: dataUser?.id,
-      name: dataUser?.name,
+      userId: paramsUser?.id,
+      name: paramsUser?.name,
       email: paramsUser?.email,
-      role: dataUser?.role,
-      phone: dataUser?.phone,
-      createdAt: dataUser?.created_at,
-      emailConfirmedAt: dataUser?.email_confirmed_at
+      role: paramsUser?.role,
+      phone: paramsUser?.phone,
+      createdAt: paramsUser?.created_at,
+      emailConfirmedAt: paramsUser?.email_confirmed_at
     } as unknown as IUserType
-    
-    const data = PostService.model.createPost(body, user)
+
+    const postData = {
+      ...body,
+      author:user,
+      authorId:paramsUser?.id
+    } as IPostType
+
+    const data = PostService.model.createPost(postData)
     
     return res.status(httpStatus.CREATED)
       .json(data);

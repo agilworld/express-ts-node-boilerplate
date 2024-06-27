@@ -27,6 +27,19 @@ export class PostService {
     })
   }
 
+  public getUserPostsPagination(userId:string, offset:number, page:number) {
+    return this.model.getPosts({
+      take: page,
+      skip: offset,
+      orderBy:{
+        createdAt:"desc"
+      },
+      where:{
+        authorId:userId
+      }
+    })
+  }
+
   public getPostsWhereKeyword(keyword:string, offset:number, page:number) {
     return this.model.getPosts({
       take: page,
