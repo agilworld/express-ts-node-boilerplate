@@ -40,6 +40,7 @@
   ],
   "dependencies": {
     "@netlify/functions": "^2.7.0",
+    "@prisma/client": "5.15.1",
     "@supabase/supabase-js": "^2.43.5",
     "axios": "^1.7.2",
     "bcryptjs": "^2.4.3",
@@ -58,6 +59,7 @@
     "moment-timezone": "^0.5.45",
     "netlify": "^13.1.18",
     "netlify-cli": "^17.26.3",
+    "prisma": "^5.15.1",
     "serverless-http": "^3.2.0",
     "typescript": "^5.4.5",
     "winston": "^3.13.0"

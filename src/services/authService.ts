@@ -1,7 +1,8 @@
 import { SupabaseAuthentication, ISupabaseRepoAuth } from "./supabase/Authentication"
 // import { LocalAuthentication, ILocalAuth } from "./local/Authentication"
 import { SupabaseAuthorization, ISupabaseMiddleware } from "./supabase/Middleware"
-import { IAuth, IAuthMiddleware, IObject } from "../interface/IAuth"
+import { IAuth, IAuthMiddleware } from "../interface/IAuth"
+import { IObject } from "../interface/IGeneral"
 
 export class AuthService {
   /**

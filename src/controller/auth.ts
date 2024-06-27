@@ -1,7 +1,7 @@
 import httpStatus from "http-status"
 import { Request, Response } from "express"
 import { SupabaseInstanceAuth } from "../services/authService"
-import { IObject } from "../interface/IAuth"
+import { IObject } from "../interface/IGeneral"
 
 /**
  * @public

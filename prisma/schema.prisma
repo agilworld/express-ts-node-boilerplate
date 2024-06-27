@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
+}
+
+model Post {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  slug        String    @unique
+  title       String
+  content     String
+  author      UserConfirm?
+  authorId    String
+  createdAt   DateTime      @default(now())
+  categoryIDs String[]      @db.ObjectId
+  categories  Category[]    @relation(fields: [categoryIDs], references: [id])
+
+  @@index([authorId])
+}
+
+model Category {
+  id      String    @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  postIDs String[]  @db.ObjectId
+  posts   Post[]    @relation(fields: [postIDs], references: [id])
+}
+
+// Address is an embedded document
+type UserConfirm {
+  userId            String
+  name              String
+  email             String
+  phone             String
+  role              String
+  createdAt         String
+  emailConfirmedAt  String
+}
+

@@ -1,9 +1,5 @@
 import APIError from "../libs/error-api"
-
-export type IObject = {
-  [key: string]: any
-} | null
-
+import { IObject } from "./IGeneral"
 export interface IAuth {
   /**
    * create/sign-up user

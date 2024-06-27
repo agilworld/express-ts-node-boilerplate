@@ -1,4 +1,5 @@
-import { IAuth, IObject } from "../../interface/IAuth"
+import { IAuth } from "../../interface/IAuth"
+import { IObject } from "../../interface/IGeneral"
 
 export interface ILocalAuth extends IAuth {
   createUser(params:IObject):Promise<any>
