@@ -18,11 +18,13 @@ model Post {
   slug        String    @unique
   title       String
   content     String
-  author      UserConfirm
-  authorId    String        @db.ObjectId
+  author      UserConfirm?
+  authorId    String
   createdAt   DateTime      @default(now())
   categoryIDs String[]      @db.ObjectId
   categories  Category[]    @relation(fields: [categoryIDs], references: [id])
+
+  @@index([authorId])
 }
 
 model Category {
