@@ -5,23 +5,21 @@ import { IUserType, IPostType, WherePosts} from "../../interface/IPost";
 import { Prisma } from "@prisma/client";
 
 export interface ILocalPost extends IPost {
-  createPost(body:IPostType, user:IUserType)
+  createPost(body:IPostType)
   getPost(id:string)
   getPosts(args:Prisma.PostFindFirstArgs)
   updatePost(id:string, body:IObject)
 }
 
 export class LocalPosts implements ILocalPost {
-  async createPost(body: IPostType, user:IUserType): Promise<unknown> {
+  async createPost(body: IPostType): Promise<unknown> {
     const res = await prisma.post.create({
       data: {
-        title:body.title,
-        slug:body.slug,
-        content:body.content,
-        author:user,
-        authorId: user.userId as string
-        
-      },
+        content: body.content,
+        title: body.title,
+        slug: body.slug,
+        authorId: body.authorId
+      }
     })
     return res
   }
@@ -40,7 +38,7 @@ export class LocalPosts implements ILocalPost {
     return data
   }
 
-  async updatePost(id:string, args: IPostType) {
+  async updatePost(id:string, args: Prisma.PostUpdateInput) {
     const data = await prisma.post.update({
       data:args,
       where:{
