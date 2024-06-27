@@ -9,6 +9,9 @@ export interface ILocalPost extends IPost {
   getPost(id:string)
   getPosts(args:Prisma.PostFindFirstArgs)
   updatePost(id:string, body:IObject)
+  getPostsPagination(offset:number, page:number)
+  getUserPostsPagination(userId:string, offset:number, page:number)
+  getPostsWhereKeyword(keyword:string, offset:number, page:number)
 }
 
 export class LocalPosts implements ILocalPost {
@@ -46,5 +49,50 @@ export class LocalPosts implements ILocalPost {
       }
     })
     return data
+  }
+
+  public getPostsPagination(offset:number, page:number) {
+    return this.getPosts({
+      take: page,
+      skip: offset,
+      orderBy:{
+        createdAt:"desc"
+      }
+    })
+  }
+
+  public getUserPostsPagination(userId:string, offset:number, page:number) {
+   
+    return this.getPosts({
+      take: page,
+      skip: offset,
+      orderBy:{
+        createdAt:"desc"
+      },
+      where:{
+        authorId:userId
+      }
+    })
+  }
+
+  public getPostsWhereKeyword(keyword:string, offset:number, page:number) {
+    return this.getPosts({
+      take: page,
+      skip: offset,
+      where:{
+        OR:[
+          {
+            title:{
+              contains:keyword
+            }
+          },
+          {
+            content:{
+              contains:keyword
+            }
+          }
+        ]
+      }
+    })
   }
 }

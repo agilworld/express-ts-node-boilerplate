@@ -36,7 +36,7 @@ export const fetchPost = (req:Request, res:Response) => {
 export const getPosts = (req:Request, res:Response) => {
   try {
     const body = req.body as TCollectionBodyReq
-    const data = PostService.getPostsPagination(body?.offset, body?.limit)
+    const data = PostService.model.getPostsPagination(body?.offset, body?.limit)
     
     return res.status(httpStatus.OK)
       .json(data);
@@ -55,7 +55,7 @@ export const getUserPosts = (req:Request, res:Response) => {
   try {
     const body = req.body as TCollectionBodyReq
     const paramsUser = req.user as IObject
-    const data = PostService.getUserPostsPagination(paramsUser?.id, body?.offset, body?.limit)
+    const data = PostService.model.getUserPostsPagination(paramsUser?.id, body?.offset, body?.limit)
     
     return res.status(httpStatus.OK)
       .json(data);

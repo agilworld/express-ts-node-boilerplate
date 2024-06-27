@@ -16,50 +16,6 @@ export class PostService {
     /* eslint-disable @typescript-eslint/no-unsafe-assignment */
     this.model = new PostProvider()
   }
-
-  public getPostsPagination(offset:number, page:number) {
-    return this.model.getPosts({
-      take: page,
-      skip: offset,
-      orderBy:{
-        createdAt:"desc"
-      }
-    })
-  }
-
-  public getUserPostsPagination(userId:string, offset:number, page:number) {
-    return this.model.getPosts({
-      take: page,
-      skip: offset,
-      orderBy:{
-        createdAt:"desc"
-      },
-      where:{
-        authorId:userId
-      }
-    })
-  }
-
-  public getPostsWhereKeyword(keyword:string, offset:number, page:number) {
-    return this.model.getPosts({
-      take: page,
-      skip: offset,
-      where:{
-        OR:[
-          {
-            title:{
-              contains:keyword
-            }
-          },
-          {
-            content:{
-              contains:keyword
-            }
-          }
-        ]
-      }
-    })
-  }
 }
 
 
