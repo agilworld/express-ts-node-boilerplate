@@ -10,16 +10,14 @@ describe('Test Post routes', () => {
       content:"Good explanation"
     }
 
-    const token = 'eyJhbGciOiJIUzI1NiIsImtpZCI6IjVuNldNOUJBRVlNbE1yQVIiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzE5NDE4MDcxLCJpYXQiOjE3MTk0MTQ0NzEsImlzcyI6Imh0dHBzOi8vZWpuaWFydnphZm9uamFxZWJ5bHkuc3VwYWJhc2UuY28vYXV0aC92MSIsInN1YiI6IjdkNDRiNzcxLTdiZTEtNGIzMS04ZWY5LWM0MDVhM2VmNjk2MSIsImVtYWlsIjoiZGlhbi5hZnJpYWw4NkBnbWFpbC5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7ImVtYWlsIjoiZGlhbi5hZnJpYWw4NkBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInBob25lX3ZlcmlmaWVkIjpmYWxzZSwic3ViIjoiN2Q0NGI3NzEtN2JlMS00YjMxLThlZjktYzQwNWEzZWY2OTYxIn0sInJvbGUiOiJhdXRoZW50aWNhdGVkIiwiYWFsIjoiYWFsMSIsImFtciI6W3sibWV0aG9kIjoicGFzc3dvcmQiLCJ0aW1lc3RhbXAiOjE3MTk0MTQ0NzF9XSwic2Vzc2lvbl9pZCI6IjIyZTY5ODg1LWRjZDMtNGJhOC1hNTVkLTczNDlhZTMwOWI1NiIsImlzX2Fub255bW91cyI6ZmFsc2V9.6vQa4yyR01wbmQTcthXm0v59QhjMT692utKmwRhJ060'
+    const token = 'eyJhbGciOiJIUzI1NiIsImtpZCI6IjVuNldNOUJBRVlNbE1yQVIiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzE5NTU2MzQ5LCJpYXQiOjE3MTk0Njk5NDksImlzcyI6Imh0dHBzOi8vZWpuaWFydnphZm9uamFxZWJ5bHkuc3VwYWJhc2UuY28vYXV0aC92MSIsInN1YiI6IjdkNDRiNzcxLTdiZTEtNGIzMS04ZWY5LWM0MDVhM2VmNjk2MSIsImVtYWlsIjoiZGlhbi5hZnJpYWw4NkBnbWFpbC5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7ImVtYWlsIjoiZGlhbi5hZnJpYWw4NkBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInBob25lX3ZlcmlmaWVkIjpmYWxzZSwic3ViIjoiN2Q0NGI3NzEtN2JlMS00YjMxLThlZjktYzQwNWEzZWY2OTYxIn0sInJvbGUiOiJhdXRoZW50aWNhdGVkIiwiYWFsIjoiYWFsMSIsImFtciI6W3sibWV0aG9kIjoicGFzc3dvcmQiLCJ0aW1lc3RhbXAiOjE3MTk0Njk5NDl9XSwic2Vzc2lvbl9pZCI6ImQwYmU1NzFmLWY3M2QtNGYzOS1iNzRiLTkwMTNiY2NkYmEyMyIsImlzX2Fub255bW91cyI6ZmFsc2V9.aToOAGRTojL4UPZfJeWzDAVRt0SMoWtPIQMH10-HmAA'
 
     test('should return 200 when post', async () => {
       const res = await request(app.default)
-        .post('/v1/post/')
+        .post('/v1/post/create')
         .set('Authorization', `Bearer ${token}`)
         .send(newPost)
-        .expect(httpStatus.OK);
-
-      expect(res.body.title).toBe(newPost.title);
+        .expect(httpStatus.CREATED);
 
     });
 

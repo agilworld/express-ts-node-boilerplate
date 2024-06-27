@@ -8,7 +8,7 @@ const app = require("../../dist/core/app")
 describe('Test Sign-in routes', () => {
   describe('GET /v1/auth/login', () => {
     let newUser = {
-      email:"dian.afrial86@gmail.com"
+      email:"zonk@mail.com"
     }
 
     // test('should return 401 when no payload request', async () => {
@@ -31,8 +31,8 @@ describe('Test Sign-in routes', () => {
         })
         .expect(httpStatus.OK);
 
-      expect(res.body).toBe(newUser.email);
-      console.log("res", res.body)
+      expect(res.body.user.email).toBe(newUser.email);
+      console.log("res", res.body.session.access_token)
       // const user = await request(app.default)
       //   .get("/v1/user")
       //   .set('Authorization', `Bearer ${res.body.session.access_token}`)
