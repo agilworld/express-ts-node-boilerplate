@@ -29,7 +29,7 @@ I used to `yarn` as common package manager
 ## Integration Service Tools
 
 - Auth --> using **Supabase** Authentication Flow
-- ORM --> using Prisma to  interact database,it serves as an intermediary layer between applications and databases. the sample project used to MongoDB Atlas
+- ORM --> using **Prisma** to  interact database,it serves as an intermediary layer between applications and databases. the sample project used to MongoDB Atlas
 
 Next big thing
 - SMTP tool with Resend
